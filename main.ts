@@ -18,11 +18,8 @@ function schranken (flag: boolean) {
             pins.servoWritePin(AnalogPin.P0, zu)
         }
         schranken_offen = flag
-        basic.pause(1000)
-    } else {
-        basic.clearScreen()
-        basic.showString("" + (schranken_offen))
     }
+    basic.pause(1000)
 }
 let distanz = 0
 let strip: neopixel.Strip = null
@@ -45,10 +42,17 @@ basic.forever(function () {
     DigitalPin.P2,
     PingUnit.Centimeters
     )
-    basic.showNumber(distanz)
-    if (distanz < 5) {
-        schranken(true)
+    if (distanz < 15) {
+        basic.showNumber(distanz)
+        if (distanz < 5) {
+            schranken(true)
+        } else {
+            schranken(false)
+        }
     } else {
-        schranken(false)
+        strip.showRainbow(1, 360)
+        strip.rotate(1)
+        strip.show()
+        basic.pause(1000)
     }
 })
