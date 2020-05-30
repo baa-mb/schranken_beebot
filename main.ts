@@ -11,7 +11,7 @@ function schranken (flag: boolean) {
             strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Green))
             strip.show()
             basic.pause(500)
-            pins.servoWritePin(AnalogPin.P0, offen)
+            pins.servoWritePin(AnalogPin.P12, offen)
         } else {
             strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
             strip.show()
@@ -19,7 +19,7 @@ function schranken (flag: boolean) {
             strip.showColor(neopixel.colors(NeoPixelColors.Red))
             strip.show()
             basic.pause(2000)
-            pins.servoWritePin(AnalogPin.P0, zu)
+            pins.servoWritePin(AnalogPin.P12, zu)
         }
         schranken_offen = flag
         basic.pause(1000)
@@ -34,8 +34,8 @@ let fehler = 0
 zu = 180
 offen = 80
 schranken_offen = false
-pins.servoWritePin(AnalogPin.P0, zu)
-strip = neopixel.create(DigitalPin.P1, 3, NeoPixelMode.RGB)
+pins.servoWritePin(AnalogPin.P12, zu)
+strip = neopixel.create(DigitalPin.P0, 3, NeoPixelMode.RGB)
 strip.clear()
 strip.show()
 basic.pause(500)
@@ -43,8 +43,8 @@ basic.forever(function () {
     basic.clearScreen()
     basic.pause(1000)
     distanz = sonar.ping(
+    DigitalPin.P1,
     DigitalPin.P2,
-    DigitalPin.P8,
     PingUnit.Centimeters
     )
     basic.showNumber(distanz)
