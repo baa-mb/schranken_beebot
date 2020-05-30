@@ -47,11 +47,10 @@ basic.forever(function () {
     DigitalPin.P8,
     PingUnit.Centimeters
     )
+    basic.showNumber(distanz)
     if (distanz < 5) {
         schranken(true)
     } else {
         schranken(false)
-        fehler += 1
     }
-    basic.showNumber(fehler)
 })
